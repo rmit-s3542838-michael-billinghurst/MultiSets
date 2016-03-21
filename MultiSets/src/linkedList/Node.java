@@ -43,5 +43,7 @@ public class Node<T> {
 	public void incrementItemCount() {
 		itemCount++;
 	}
-
+	public void deincrementItemCount() {
+		itemCount--;
+	}
 }
