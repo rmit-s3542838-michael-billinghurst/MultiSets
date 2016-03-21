@@ -4,8 +4,7 @@ public class Node<T> {
 	
 	private T item=null;
 	private int itemCount=0;
-	private Node next=null;
-	//Node prev;
+	private Node<T> next=null;
 
 	public Node() {
 		// Creates an empty node
@@ -16,12 +15,33 @@ public class Node<T> {
 		itemCount=1;
 	}
 
-	public Node getNext() {
+	public Node<T> getNext() {
 		return next;
 	}
 
-	public void setNext(Node next) {
+	public void setNext(Node<T> next) {
 		this.next = next;
+	}
+
+	public T getItem() {
+		return item;
+	}
+
+	/* setItem should not be needed for linked list implementation. Node constructors should be used.
+	public void setItem(T item) {
+		this.item = item;
+	} */
+
+	public int getItemCount() {
+		return itemCount;
+	}
+
+	public void setItemCount(int itemCount) {
+		this.itemCount = itemCount;
+	}
+	
+	public void incrementItemCount() {
+		itemCount++;
 	}
 
 }
