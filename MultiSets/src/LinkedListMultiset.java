@@ -91,7 +91,7 @@ public class LinkedListMultiset<T> extends Multiset<T>
 	
 	public void removeAll(T item) {
 		Node<T> nodeCurrent = head;
-		Node<T> nodePrev=null;
+		Node<T> nodePrev=new Node<T>();
 		//TODO Currently breaks if list is empty, or if item is at the head of the list.
 		//Loop through the list until the item is found, or the end is reached
 		while ((nodeCurrent.getItem()!=item) && (nodeCurrent.getNext()!=null))
@@ -100,13 +100,21 @@ public class LinkedListMultiset<T> extends Multiset<T>
 			nodeCurrent=nodeCurrent.getNext();
 		}		//If nodeCurrent contains the item, delete the node
 		if (nodeCurrent.getItem()==item)
+			//Set the previous node to point to the next node (ie skip current in the chain)
 			nodePrev.setNext(nodeCurrent.getNext());
+			//Set the item count to zero, just in case, and then remove the reference to current node, and leave it to garbage collection
 			nodeCurrent.setItemCount(0);
+			nodeCurrent=null;
 	} // end of removeAll()
 	
 	
 	public void print(PrintStream out) {
-		// Implement me!
+		Node<T> current = head;
+		do
+		{
+			out.print(current.getItem());
+			out.print(current.getItemCount());
+		}while (current.getNext() != null);
 	} // end of print()
 	
 } // end of class LinkedListMultiset
