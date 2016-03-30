@@ -14,10 +14,7 @@ public class LinkedListMultiset<T> extends Multiset<T>
 	 * The List object knows the location of the first node in the list, and can use it's methods
 	 * To loop through the nodes which all point to the next one in the list*/
 	Node<T> head = new Node<T>() ;
-	//nodeCount is the number of nodes, or unique items.
-	//itemCount is the total number of items (including duplicate items)
-	int nodeCount=0;
-	int listCount=0;
+
 	
 	public void add(T item) {
 		//Create a node for the item
@@ -40,15 +37,11 @@ public class LinkedListMultiset<T> extends Multiset<T>
 			{
 				 //If a node for item already exists in the list, increment the itemCount of that node and of the linked list
 				nodeCurrent.incrementItemCount();
-				listCount++;
 			}
 			else  if (nodeCurrent.getNext()==null)
 			{
 				//add the new Node to the end of the list, if item doesn't occur in the list already
 				nodeCurrent.setNext(nodeTemp);
-				//Increment the counters in the linked list
-				nodeCount++;
-				listCount++;
 			}
 			else
 				//Fail safe for debugging, should never occur in runtime.
@@ -85,7 +78,9 @@ public class LinkedListMultiset<T> extends Multiset<T>
 		}
 		//If the current node is the item, remove one. If it isn't, it means you've reached the end of the list.
 		if (nodeCurrent.getItem()==item)
+		{
 			nodeCurrent.deincrementItemCount();
+		}
 	} // end of removeOne()
 	
 	
@@ -112,8 +107,8 @@ public class LinkedListMultiset<T> extends Multiset<T>
 		Node<T> current = head;
 		do
 		{
-			out.print(current.getItem());
-			out.print(current.getItemCount());
+			out.print("Item: " +current.getItem());
+			out.print("Item count: " +current.getItemCount());
 		}while (current.getNext() != null);
 	} // end of print()
 	
