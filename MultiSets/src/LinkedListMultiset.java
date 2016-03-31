@@ -13,7 +13,7 @@ public class LinkedListMultiset<T> extends Multiset<T>
 	/* A Linked List is a series of nodes that points to the next node in the list.
 	 * The List object knows the location of the first node in the list, and can use it's methods
 	 * To loop through the nodes which all point to the next one in the list*/
-	Node<T> head = new Node<T>() ;
+	private Node<T> head = new Node<T>() ;
 
 	
 	public void add(T item) {

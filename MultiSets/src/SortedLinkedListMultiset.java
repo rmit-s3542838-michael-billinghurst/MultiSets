@@ -13,7 +13,7 @@ public class SortedLinkedListMultiset<T> extends Multiset<T>
 		 * The List object knows the location of the first node in the list, and can use it's methods
 		 * To loop through the nodes which all point to the next one in the list
 		 * This list needs to be maintained in a sorted order*/
-		Node<T> head;
+		private Node<T> head;
 		// end of SortedLinkedListMultiset()
 	
 	
