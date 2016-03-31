@@ -54,20 +54,17 @@ public class SortedLinkedListMultiset<T> extends Multiset<T>
 	
 	
 	public int search(T item) {
-		//Copied from LinkedList implementation
-		//Start search of the head of the list,
+		//Start search of the head of the list
 		Node<T> nodeCurrent = head;
-		//Check if the head is the node containing item
-		if (nodeCurrent.getItem()==item)
-			return nodeCurrent.getItemCount();
-		//Loop through the entire list searching for the item
-		while (nodeCurrent.getNext() != null)
+		/*Loop through the list, while the current node is lexigraphically before item.
+		 * When this loop terminates, nodeCurrent should be either item, or the first 
+		 * item after the searched for itemLexigraphically*/
+		while ( ((String)item).compareTo(((String)nodeCurrent.getItem()))<0 )
 		{
 			nodeCurrent= nodeCurrent.getNext();
-			//If the item is found, return the current Index
-			if (nodeCurrent.getItem()==item)
-				return nodeCurrent.getItemCount();
 		}
+		if (nodeCurrent.getItem().equals(item))
+			return nodeCurrent.getItemCount();
 		//If the end of the list is reached, return 0, as there are no items in the list
 		return 0;
 	}
