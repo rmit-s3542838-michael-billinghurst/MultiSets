@@ -1,32 +1,32 @@
 import java.io.PrintStream;
 import java.util.*;
 
-import linkedList.Node;
+import nodes.ListNode;
 /*This reuses a great deal of code from LinkedListMultiset, and would make more sense to extend there, 
  * but I didn't want to code skeleton that was supplied*/
 public class SortedLinkedListMultiset<T> extends Multiset<T>
 {
 	public SortedLinkedListMultiset() {
-		head = new Node<T>();
+		head = new ListNode<T>();
 	}
 		/* A Linked List is a series of nodes that points to the next node in the list.
 		 * The List object knows the location of the first node in the list, and can use it's methods
 		 * To loop through the nodes which all point to the next one in the list
 		 * This list needs to be maintained in a sorted order*/
-		private Node<T> head;
+		private ListNode<T> head;
 		// end of SortedLinkedListMultiset()
 	
 	
 	public void add(T item) {
-		Node<T> nodeTemp = new Node<T>(item);
+		ListNode<T> nodeTemp = new ListNode<T>(item);
 		//Check if there are any items in the list, and if not, make the new item the head then exit function.
 		String target=(String)item;
 		if (head.getItem()==null)
 			head=nodeTemp;
 		else
 		{
-			Node<T> nodePrev = head;
-			Node<T> nodeCurrent = head;
+			ListNode<T> nodePrev = head;
+			ListNode<T> nodeCurrent = head;
 			/*Loop through the list until you reach the last node (ie a node where next==null) or
 			 * You reach either an existing element of item in the list, or you find that it is not in the list,
 			 * and reach where it should be by comparison, since the list is sorted*/
@@ -55,7 +55,7 @@ public class SortedLinkedListMultiset<T> extends Multiset<T>
 	
 	public int search(T item) {
 		//Start search of the head of the list
-		Node<T> nodeCurrent = head;
+		ListNode<T> nodeCurrent = head;
 		/*Loop through the list, while the current node is lexigraphically before item.
 		 * When this loop terminates, nodeCurrent should be either item, or the first 
 		 * item after the searched for itemLexigraphically*/
@@ -71,7 +71,7 @@ public class SortedLinkedListMultiset<T> extends Multiset<T>
 	
 	public void removeOne(T item) {
 		//Copied from LinkedList implementation
-		Node<T> nodeCurrent = head;
+		ListNode<T> nodeCurrent = head;
 		//Loop through the list until the item is found, or the end is reached
 		while ((nodeCurrent.getItem()!=item) && (nodeCurrent.getNext()!=null))
 		{
@@ -87,8 +87,8 @@ public class SortedLinkedListMultiset<T> extends Multiset<T>
 	
 	public void removeAll(T item) {
 		//Copied from LinkedList implementation
-		Node<T> nodeCurrent = head;
-		Node<T> nodePrev=new Node<T>();
+		ListNode<T> nodeCurrent = head;
+		ListNode<T> nodePrev=new ListNode<T>();
 		//TODO Currently breaks if list is empty, or if item is at the head of the list.
 		//Loop through the list until the item is found, or the end is reached
 		while ((nodeCurrent.getItem()!=item) && (nodeCurrent.getNext()!=null))
@@ -106,7 +106,7 @@ public class SortedLinkedListMultiset<T> extends Multiset<T>
 	
 	
 	public void print(PrintStream out) {
-		Node<T> current = head;
+		ListNode<T> current = head;
 		do
 		{
 			out.print("Item: " +current.getItem());

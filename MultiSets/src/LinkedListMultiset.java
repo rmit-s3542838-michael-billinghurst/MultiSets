@@ -2,7 +2,7 @@
 import java.io.PrintStream;
 import java.util.*;
 
-import linkedList.Node;
+import nodes.ListNode;
 
 public class LinkedListMultiset<T> extends Multiset<T>
 {
@@ -13,18 +13,18 @@ public class LinkedListMultiset<T> extends Multiset<T>
 	/* A Linked List is a series of nodes that points to the next node in the list.
 	 * The List object knows the location of the first node in the list, and can use it's methods
 	 * To loop through the nodes which all point to the next one in the list*/
-	private Node<T> head = new Node<T>() ;
+	private ListNode<T> head = new ListNode<T>() ;
 
 	
 	public void add(T item) {
 		//Create a node for the item
-		Node<T> nodeTemp = new Node<T>(item);
+		ListNode<T> nodeTemp = new ListNode<T>(item);
 		//Check if there are any items in the list, and if not, make the new item the head.
 		if (head.getItem()==null)
 			head=nodeTemp;
 		else
 		{
-			Node<T> nodeCurrent = head;
+			ListNode<T> nodeCurrent = head;
 			/*Loop through the list until you reach the last node (ie a node where next==null)
 			 * Or find the current a duplicate entry in the list (Note comparison here intentionally checks for the same object, not identical ones
 			 * [That is it compares by object reference not value])*/
@@ -52,7 +52,7 @@ public class LinkedListMultiset<T> extends Multiset<T>
 	
 	public int search(T item) {
 		//Start search of the head of the list,
-		Node<T> nodeCurrent = head;
+		ListNode<T> nodeCurrent = head;
 		//Check if the head is the node containing item
 		if (nodeCurrent.getItem()==item)
 			return nodeCurrent.getItemCount();
@@ -70,7 +70,7 @@ public class LinkedListMultiset<T> extends Multiset<T>
 	
 	
 	public void removeOne(T item) {
-		Node<T> nodeCurrent = head;
+		ListNode<T> nodeCurrent = head;
 		//Loop through the list until the item is found, or the end is reached
 		while ((nodeCurrent.getItem()!=item) && (nodeCurrent.getNext()!=null))
 		{
@@ -85,8 +85,8 @@ public class LinkedListMultiset<T> extends Multiset<T>
 	
 	
 	public void removeAll(T item) {
-		Node<T> nodeCurrent = head;
-		Node<T> nodePrev=new Node<T>();
+		ListNode<T> nodeCurrent = head;
+		ListNode<T> nodePrev=new ListNode<T>();
 		//TODO Currently breaks if list is empty, or if item is at the head of the list.
 		//Loop through the list until the item is found, or the end is reached
 		while ((nodeCurrent.getItem()!=item) && (nodeCurrent.getNext()!=null))
@@ -104,7 +104,7 @@ public class LinkedListMultiset<T> extends Multiset<T>
 	
 	
 	public void print(PrintStream out) {
-		Node<T> current = head;
+		ListNode<T> current = head;
 		do
 		{
 			out.print("Item: " +current.getItem());

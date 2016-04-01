@@ -1,25 +1,25 @@
-package linkedList;
+package nodes;
 
-public class Node<T> {
+public class ListNode<T> {
 	
 	private T item=null;
 	private int itemCount=0;
-	private Node<T> next=null;
+	private ListNode<T> next=null;
 
-	public Node() {
+	public ListNode() {
 		// Creates an empty node
 	}
 	
-	public Node(T newItem) {
+	public ListNode(T newItem) {
 		item=newItem;
 		itemCount=1;
 	}
 
-	public Node<T> getNext() {
+	public ListNode<T> getNext() {
 		return next;
 	}
 
-	public void setNext(Node<T> next) {
+	public void setNext(ListNode<T> next) {
 		this.next = next;
 	}
 
