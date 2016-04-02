@@ -10,6 +10,23 @@ public class TreeNode<T> {
 	public TreeNode(T newItem) {
 		setItem(newItem);
 		setItemCount(1);
+		setLeftNode(null);
+		setRightNode(null);
+	}
+/*	public TreeNode() {
+		setItem(null);
+		setItemCount(0);
+		setLeftNode(null);
+		setRightNode(null);
+	}*/
+	//Checks item against the contents of the node and returns the next node in the tree corresponding to the node.
+	
+	public TreeNode<T> checkNode(T item){
+		if (((String)item).compareTo((String)this.item)>0)
+			return rightNode;
+		else if (((String)item).compareTo((String)this.item)<0)
+			return leftNode;
+		else return this;
 	}
 	
 	public void incrementItemCount() {
