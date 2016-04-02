@@ -107,8 +107,7 @@ public class LinkedListMultiset<T> extends Multiset<T>
 		ListNode<T> current = head;
 		do
 		{
-			out.print("Item: " +current.getItem());
-			out.print("Item count: " +current.getItemCount());
+			out.println(current.getItem() + " | " + current.getItemCount());
 		}while (current.getNext() != null);
 	} // end of print()
 	
