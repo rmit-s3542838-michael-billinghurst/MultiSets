@@ -28,12 +28,12 @@ public class LinkedListMultiset<T> extends Multiset<T>
 			/*Loop through the list until you reach the last node (ie a node where next==null)
 			 * Or find the current a duplicate entry in the list (Note comparison here intentionally checks for the same object, not identical ones
 			 * [That is it compares by object reference not value])*/
-			while (nodeCurrent.getNext() != null && nodeCurrent.getItem()!=item)
+			while (nodeCurrent.getNext() != null && !(nodeCurrent.getItem().equals(item)))
 			{
 				nodeCurrent= nodeCurrent.getNext();
 			}
 			//Stops here, either at the end of the list, or at the node that already contains a number of 'item'
-			 if (nodeCurrent.getItem()==item)
+			 if (nodeCurrent.getItem().equals(item))
 			{
 				 //If a node for item already exists in the list, increment the itemCount of that node and of the linked list
 				nodeCurrent.incrementItemCount();
@@ -54,14 +54,14 @@ public class LinkedListMultiset<T> extends Multiset<T>
 		//Start search of the head of the list,
 		ListNode<T> nodeCurrent = head;
 		//Check if the head is the node containing item
-		if (nodeCurrent.getItem()==item)
+		if (nodeCurrent.getItem().equals(item))
 			return nodeCurrent.getItemCount();
 		//Loop through the entire list searching for the item
 		while (nodeCurrent.getNext() != null)
 		{
 			nodeCurrent= nodeCurrent.getNext();
 			//If the item is found, return the current Index
-			if (nodeCurrent.getItem()==item)
+			if (nodeCurrent.getItem().equals(item))
 				return nodeCurrent.getItemCount();
 		}
 		//If the end of the list is reached, return 0, as there are no items in the list
@@ -72,12 +72,12 @@ public class LinkedListMultiset<T> extends Multiset<T>
 	public void removeOne(T item) {
 		ListNode<T> nodeCurrent = head;
 		//Loop through the list until the item is found, or the end is reached
-		while ((nodeCurrent.getItem()!=item) && (nodeCurrent.getNext()!=null))
+		while (!(nodeCurrent.getItem().equals(item)) && (nodeCurrent.getNext()!=null))
 		{
 			nodeCurrent=nodeCurrent.getNext();
 		}
 		//If the current node is the item, remove one. If it isn't, it means you've reached the end of the list.
-		if (nodeCurrent.getItem()==item)
+		if (nodeCurrent.getItem().equals(item))
 		{
 			nodeCurrent.deincrementItemCount();
 		}
@@ -89,12 +89,12 @@ public class LinkedListMultiset<T> extends Multiset<T>
 		ListNode<T> nodePrev=new ListNode<T>();
 		//TODO Currently breaks if list is empty, or if item is at the head of the list.
 		//Loop through the list until the item is found, or the end is reached
-		while ((nodeCurrent.getItem()!=item) && (nodeCurrent.getNext()!=null))
+		while (!(nodeCurrent.getItem().equals(item)) && (nodeCurrent.getNext()!=null))
 		{
 			nodePrev=nodeCurrent;
 			nodeCurrent=nodeCurrent.getNext();
 		}		//If nodeCurrent contains the item, delete the node
-		if (nodeCurrent.getItem()==item)
+		if (nodeCurrent.getItem().equals(item))
 			//Set the previous node to point to the next node (ie skip current in the chain)
 			nodePrev.setNext(nodeCurrent.getNext());
 			//Set the item count to zero, just in case, and then remove the reference to current node, and leave it to garbage collection

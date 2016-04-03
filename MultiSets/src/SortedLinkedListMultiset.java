@@ -70,15 +70,14 @@ public class SortedLinkedListMultiset<T> extends Multiset<T>
 	}
 	
 	public void removeOne(T item) {
-		//Copied from LinkedList implementation
 		ListNode<T> nodeCurrent = head;
 		//Loop through the list until the item is found, or the end is reached
-		while ((nodeCurrent.getItem()!=item) && (nodeCurrent.getNext()!=null))
+		while (!(nodeCurrent.getItem().equals(item)) && (nodeCurrent.getNext()!=null))
 		{
 			nodeCurrent=nodeCurrent.getNext();
 		}
 		//If the current node is the item, remove one. If it isn't, it means you've reached the end of the list.
-		if (nodeCurrent.getItem()==item)
+		if (nodeCurrent.getItem().equals(item))
 		{
 			nodeCurrent.deincrementItemCount();
 		}
@@ -86,17 +85,16 @@ public class SortedLinkedListMultiset<T> extends Multiset<T>
 	
 	
 	public void removeAll(T item) {
-		//Copied from LinkedList implementation
 		ListNode<T> nodeCurrent = head;
 		ListNode<T> nodePrev=new ListNode<T>();
 		//TODO Currently breaks if list is empty, or if item is at the head of the list.
 		//Loop through the list until the item is found, or the end is reached
-		while ((nodeCurrent.getItem()!=item) && (nodeCurrent.getNext()!=null))
+		while (!(nodeCurrent.getItem().equals(item)) && (nodeCurrent.getNext()!=null))
 		{
 			nodePrev=nodeCurrent;
 			nodeCurrent=nodeCurrent.getNext();
 		}		//If nodeCurrent contains the item, delete the node
-		if (nodeCurrent.getItem()==item)
+		if (nodeCurrent.getItem().equals(item))
 			//Set the previous node to point to the next node (ie skip current in the chain)
 			nodePrev.setNext(nodeCurrent.getNext());
 			//Set the item count to zero, just in case, and then remove the reference to current node, and leave it to garbage collection
