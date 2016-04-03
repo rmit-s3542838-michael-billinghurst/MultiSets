@@ -87,21 +87,33 @@ public class SortedLinkedListMultiset<T> extends Multiset<T>
 	
 	
 	public void removeAll(T item) {
+		//Same code as LinkedList
 		ListNode<T> nodeCurrent = head;
-		ListNode<T> nodePrev=new ListNode<T>();
-		//TODO Currently breaks if list is empty, or if item is at the head of the list.
-		//Loop through the list until the item is found, or the end is reached
-		while (!(nodeCurrent.getItem().equals(item)) && (nodeCurrent.getNext()!=null))
+		ListNode<T> nodePrev = null;
+		//Empty list
+		if(head == null || nodeCurrent.getItem() == null)
+			return;
+		//Loop through the list until the item is found, or the end is reached (in which case nodeCurrent will be set to null).
+		while (!(nodeCurrent.getItem().equals(item)) && (nodeCurrent!=null))
 		{
 			nodePrev=nodeCurrent;
 			nodeCurrent=nodeCurrent.getNext();
-		}		//If nodeCurrent contains the item, delete the node
-		if (nodeCurrent.getItem().equals(item))
+		}
+		//Item not found
+		if(nodeCurrent == null)
+			return;
+		//Item is at start of list
+		if(nodePrev == null)
+		{
+			head = nodeCurrent.getNext();
+			
+		}
+		else
+		{
 			//Set the previous node to point to the next node (ie skip current in the chain)
 			nodePrev.setNext(nodeCurrent.getNext());
-			//Set the item count to zero, just in case, and then remove the reference to current node, and leave it to garbage collection
-			nodeCurrent.setItemCount(0);
-			nodeCurrent=null;
+		}
+		//Set the item count to zero, just in case, and then remove the reference to current node, and leave it to garbage collection
 	} // end of removeAll()
 	
 	
