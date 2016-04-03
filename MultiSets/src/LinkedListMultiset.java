@@ -105,10 +105,12 @@ public class LinkedListMultiset<T> extends Multiset<T>
 	
 	public void print(PrintStream out) {
 		ListNode<T> current = head;
-		do
+		out.println(current.getItem() + " | " + current.getItemCount());
+		while (current.getNext() != null)
 		{
+			current=current.getNext();
 			out.println(current.getItem() + " | " + current.getItemCount());
-		}while (current.getNext() != null);
+		};
 	} // end of print()
 	
 } // end of class LinkedListMultiset
