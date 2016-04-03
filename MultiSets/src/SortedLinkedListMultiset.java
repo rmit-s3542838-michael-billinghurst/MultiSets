@@ -61,7 +61,7 @@ public class SortedLinkedListMultiset<T> extends Multiset<T>
 		/*Loop through the list, while the current node is lexigraphically before item.
 		 * When this loop terminates, nodeCurrent should be either item, or the first 
 		 * item after the searched for itemLexigraphically*/
-		while ( ((String)item).compareTo(((String)nodeCurrent.getItem()))<0 )
+		while ( ((String)item).compareTo(((String)nodeCurrent.getItem()))>0 )
 		{
 			nodeCurrent= nodeCurrent.getNext();
 		}
