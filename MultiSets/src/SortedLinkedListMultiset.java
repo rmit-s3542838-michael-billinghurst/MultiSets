@@ -25,28 +25,26 @@ public class SortedLinkedListMultiset<T> extends Multiset<T>
 			head=nodeTemp;
 		else
 		{
-			ListNode<T> nodePrev = head;
 			ListNode<T> nodeCurrent = head;
 			/*Loop through the list until you reach the last node (ie a node where next==null) or
 			 * You reach either an existing element of item in the list, or you find that it is not in the list,
 			 * and reach where it should be by comparison, since the list is sorted*/
-			while ((nodeCurrent.getNext() != null) &&(target.compareTo( (String)nodeCurrent.getItem() ) >0 ) )
+			while ((nodeCurrent.getNext() != null) &&(target.compareTo((String)nodeCurrent.getItem()) >0 ) )
 			{
 				{
-					nodePrev=nodeCurrent;
 					nodeCurrent=nodeCurrent.getNext();
 				}
 			}
 			//if the current node is item, increment the item count
-			if (target.equals(nodeCurrent.getItem()))
+			if (item.equals(nodeCurrent.getItem()))
 			{
 				nodeCurrent.incrementItemCount();
 			}
-			//otherwise, if the after the target string, insert the target node into the linked list
-			else if (target.compareTo( (String)nodeCurrent.getItem() ) <0 )
+			//otherwise, if the target after String comes after the node, insert the target node into the linked list
+			else if (target.compareTo( (String)nodeCurrent.getItem() ) >0 )
 			{
-				nodePrev.setNext(nodeTemp);
-				nodeTemp.setNext(nodeCurrent);
+				nodeTemp.setNext(nodeCurrent.getNext());
+				nodeCurrent.setNext(nodeTemp);
 			}
 		}
 		

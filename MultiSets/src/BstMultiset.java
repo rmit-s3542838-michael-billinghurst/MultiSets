@@ -55,14 +55,15 @@ public class BstMultiset<T> extends Multiset<T>
 
 	public void removeOne(T item) {
 		TreeNode<T> current = root;
-		do{
+		 while (current!=null)
+		{
 			TreeNode<T> next =current.checkNode(item);
 			if (current==next)
 			{
 				current.deincrementItemCount();
 				return;
 			}
-		} while (current!=null);
+		}
 	} // end of removeOne()
 	
 	
