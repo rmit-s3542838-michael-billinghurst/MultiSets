@@ -118,6 +118,8 @@ public class SortedLinkedListMultiset<T> extends Multiset<T>
 	
 	
 	public void print(PrintStream out) {
+		if (head==null)
+			return;
 		ListNode<T> current = head;
 		out.println(current.getItem() + " | " + current.getItemCount());
 		while (current.getNext() != null)
