@@ -21,6 +21,10 @@ public class TestCaseGen {
 		fileName = input.nextLine();
 		File inputFile= new File(fileName+".in");
 		PrintWriter inputWriter = new PrintWriter(new FileWriter(inputFile));
+		File expectedFile= new File(fileName+".exp");
+		PrintWriter expectedWriter = new PrintWriter(new FileWriter(expectedFile));
+		File searchFile= new File(fileName+".search.exp");
+		PrintWriter searchWriter = new PrintWriter(new FileWriter(searchFile));
 		Boolean quit = false;
 		while (quit==false)
 		{
@@ -47,7 +51,7 @@ public class TestCaseGen {
 				{
 					int randomSearch=random.nextInt(99);//Generate random number, 1-100;
 					inputWriter.println("S "+randomSearch);
-					//write "S <dataset[randomSearch]" to filename.search.exp
+					searchWriter.println("S "+dataset[randomSearch]);//write "S <dataset[randomSearch]" to filename.search.exp
 				}
 				break;
 			case "RO":
@@ -82,7 +86,10 @@ public class TestCaseGen {
 		}
 		inputWriter.println("P");
 		inputWriter.println("Q");
-		//Write dataset to expected file
+		for (int i=0; i<100;i++)
+		{
+			expectedWriter.println(i + " | " + dataset[i]);
+		}
 	}
 
 }
