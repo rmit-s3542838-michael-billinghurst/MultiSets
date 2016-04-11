@@ -6,10 +6,6 @@ import java.io.*;
 
 public class TestCaseGen {
 
-	public TestCaseGen() {
-		// TODO Auto-generated constructor stub
-	}
-
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
 		String fileName= "test1";
@@ -18,6 +14,7 @@ public class TestCaseGen {
 		int [] dataset= new int[100];
 		Random random = new Random();
 		System.out.println("Please enter the name of the file you wish to output to");
+		
 		fileName = input.nextLine();
 		File inputFile= new File(fileName+".in");
 		PrintWriter inputWriter = new PrintWriter(new FileWriter(inputFile));
@@ -25,6 +22,7 @@ public class TestCaseGen {
 		PrintWriter expectedWriter = new PrintWriter(new FileWriter(expectedFile));
 		File searchFile= new File(fileName+".search.exp");
 		PrintWriter searchWriter = new PrintWriter(new FileWriter(searchFile));
+		
 		Boolean quit = false;
 		while (quit==false)
 		{
@@ -90,6 +88,10 @@ public class TestCaseGen {
 		{
 			expectedWriter.println(i + " | " + dataset[i]);
 		}
+		// Close the file Writers
+		inputWriter.close();
+		expectedWriter.close();
+		searchWriter.close();
 	}
 
 }
