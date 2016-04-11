@@ -55,7 +55,7 @@ public class TestCaseGen {
 					int randomSearch=random.nextInt(99);//Generate random number, 1-100;
 					inputWriter.println("S "+randomSearch);
 					int searchResult = Math.max(0,dataset[randomSearch]); //Should return 0 even if element is not in the list (is -1 in dataset array)
-					searchWriter.println("S "+searchResult);//write "S <dataset[randomSearch]" to filename.search.exp
+					searchWriter.println(randomSearch+" "+searchResult);//write "S <dataset[randomSearch]" to filename.search.exp
 				}
 				break;
 			case "RO":
