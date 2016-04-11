@@ -1,5 +1,6 @@
 package dataGen;
 
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 import java.io.*;
@@ -12,6 +13,8 @@ public class TestCaseGen {
 		Scanner input = new Scanner(System.in);
 		
 		int [] dataset= new int[100];
+		//Initialised to -1
+		Arrays.fill(dataset, -1);
 		Random random = new Random();
 		System.out.println("Please enter the name of the file you wish to output to");
 		
@@ -38,6 +41,8 @@ public class TestCaseGen {
 				{
 					int randomAdd=random.nextInt(99);//Generate random number, 1-100;
 					inputWriter.println("A "+randomAdd);
+					if (dataset[randomAdd]==-1)
+						dataset[randomAdd]++;
 					dataset[randomAdd]++;
 				}
 				break;
@@ -49,7 +54,8 @@ public class TestCaseGen {
 				{
 					int randomSearch=random.nextInt(99);//Generate random number, 1-100;
 					inputWriter.println("S "+randomSearch);
-					searchWriter.println("S "+dataset[randomSearch]);//write "S <dataset[randomSearch]" to filename.search.exp
+					int searchResult = Math.max(0,dataset[randomSearch]); //Should return 0 even if element is not in the list (is -1 in dataset array)
+					searchWriter.println("S "+searchResult);//write "S <dataset[randomSearch]" to filename.search.exp
 				}
 				break;
 			case "RO":
@@ -60,7 +66,8 @@ public class TestCaseGen {
 				{
 					int randomRem=random.nextInt(99);//Generate random number, 1-100;
 					inputWriter.println("RO "+randomRem);
-					dataset[randomRem]--;
+					if (dataset[randomRem]>0)
+						dataset[randomRem]--;
 				}
 				break;
 			case "RA":
@@ -71,14 +78,16 @@ public class TestCaseGen {
 				{
 					int randomRem=random.nextInt(99);//Generate random number, 1-100;
 					inputWriter.println("RA "+randomRem);
-					dataset[randomRem]=0;
+					dataset[randomRem]=-1;
 				}
+				break;
+			case "Q":
 				break;
 			default: System.out.println("Invalid Command");
 				break;
 			}//End of switch Statement
-			System.out.println("Do you wish to keep generating data? (Y/N)");
-			if (input.nextLine().equals("Y"))
+			System.out.println("Enter 'Q' to Stop generating this Test Case");
+			if (input.nextLine().equals("Q"))
 				quit=true;
 			
 		}
@@ -86,7 +95,8 @@ public class TestCaseGen {
 		inputWriter.println("Q");
 		for (int i=0; i<100;i++)
 		{
-			expectedWriter.println(i + " | " + dataset[i]);
+			if (dataset[i]>=0)
+				expectedWriter.println(i + " | " + dataset[i]);
 		}
 		// Close the file Writers
 		inputWriter.close();
