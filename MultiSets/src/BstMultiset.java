@@ -21,6 +21,7 @@ public class BstMultiset<T> extends Multiset<T>
 		{
 			//Searches through the tree to find the node where item should belong.
 			TreeNode<T> parentNode=root;
+			//checkNode compares item with the item the node being called from, and returns the node where item should go
 			TreeNode<T> currentNode = parentNode.checkNode(item);
 			//If the node exists, it is currentNode=parentNode, if it doesn't, it will be null (after the loop)
 			while (currentNode !=null && currentNode!=parentNode)
@@ -63,6 +64,8 @@ public class BstMultiset<T> extends Multiset<T>
 				current.deincrementItemCount();
 				return;
 			}
+			else
+				current=next;
 		}
 	} // end of removeOne()
 	
