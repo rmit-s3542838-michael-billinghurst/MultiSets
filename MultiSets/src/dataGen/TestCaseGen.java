@@ -6,13 +6,14 @@ import java.util.Scanner;
 import java.io.*;
 
 public class TestCaseGen {
+static final int MAXSETSIZE=1000;
 
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
 		String fileName= "test1";
 		Scanner input = new Scanner(System.in);
 		
-		int [] dataset= new int[100];
+		int [] dataset= new int[MAXSETSIZE];
 		//Initialised to -1
 		Arrays.fill(dataset, -1);
 		Random random = new Random();
@@ -39,7 +40,7 @@ public class TestCaseGen {
 				addNo = input.nextInt();
 				for (int i=0; i<addNo; i++)
 				{
-					int randomAdd=random.nextInt(99);//Generate random number, 1-100;
+					int randomAdd=random.nextInt(MAXSETSIZE-1);//Generate random number
 					inputWriter.println("A "+randomAdd);
 					if (dataset[randomAdd]==-1)
 						dataset[randomAdd]++;
@@ -52,7 +53,7 @@ public class TestCaseGen {
 				searchNo = input.nextInt();
 				for (int i=0; i<searchNo; i++)
 				{
-					int randomSearch=random.nextInt(99);//Generate random number, 1-100;
+					int randomSearch=random.nextInt(MAXSETSIZE-1);//Generate random number
 					inputWriter.println("S "+randomSearch);
 					int searchResult = Math.max(0,dataset[randomSearch]); //Should return 0 even if element is not in the list (is -1 in dataset array)
 					searchWriter.println(randomSearch+" "+searchResult);//write "S <dataset[randomSearch]" to filename.search.exp
@@ -64,7 +65,7 @@ public class TestCaseGen {
 				remONo = input.nextInt();
 				for (int i=0; i<remONo; i++)
 				{
-					int randomRem=random.nextInt(99);//Generate random number, 0-99;
+					int randomRem=random.nextInt(MAXSETSIZE-1);//Generate random number
 					inputWriter.println("RO "+randomRem);
 					if (dataset[randomRem]>0)
 						dataset[randomRem]--;
@@ -76,7 +77,7 @@ public class TestCaseGen {
 				remANo = input.nextInt();
 				for (int i=0; i<remANo; i++)
 				{
-					int randomRem=random.nextInt(99);//Generate random number, 1-100;
+					int randomRem=random.nextInt(MAXSETSIZE-1);//Generate random number;
 					inputWriter.println("RA "+randomRem);
 					dataset[randomRem]=-1;
 				}
@@ -93,7 +94,7 @@ public class TestCaseGen {
 		}
 		inputWriter.println("P");
 		inputWriter.println("Q");
-		for (int i=0; i<100;i++)
+		for (int i=0; i<MAXSETSIZE-1;i++)
 		{
 			if (dataset[i]>=0)
 				expectedWriter.println(i + " | " + dataset[i]);
