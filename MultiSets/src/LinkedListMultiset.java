@@ -91,7 +91,7 @@ public class LinkedListMultiset<T> extends Multiset<T>
 		if(head == null || nodeCurrent.getItem() == null)
 			return;
 		//Loop through the list until the item is found, or the end is reached (in which case nodeCurrent will be set to null).
-		while (!(nodeCurrent.getItem().equals(item)) && (nodeCurrent!=null))
+		while ((nodeCurrent!=null) && !(nodeCurrent.getItem().equals(item)))
 		{
 			nodePrev=nodeCurrent;
 			nodeCurrent=nodeCurrent.getNext();

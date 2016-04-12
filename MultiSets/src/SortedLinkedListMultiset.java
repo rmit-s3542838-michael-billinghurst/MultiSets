@@ -7,7 +7,8 @@ import nodes.ListNode;
 public class SortedLinkedListMultiset<T> extends Multiset<T>
 {
 	public SortedLinkedListMultiset() {
-		head = new ListNode<T>();
+		//head = new ListNode<T>();
+		head = null;
 	}
 		/* A Linked List is a series of nodes that points to the next node in the list.
 		 * The List object knows the location of the first node in the list, and can use it's methods
@@ -21,7 +22,7 @@ public class SortedLinkedListMultiset<T> extends Multiset<T>
 		ListNode<T> nodeTemp = new ListNode<T>(item);
 		//Check if there are any items in the list, and if not, make the new item the head then exit function.
 		String target=(String)item;
-		if (head.getItem()==null)
+		if (head==null)
 			head=nodeTemp;
 		else
 		{
@@ -48,7 +49,10 @@ public class SortedLinkedListMultiset<T> extends Multiset<T>
 			else 
 			{
 				nodeTemp.setNext(nodeCurrent);
-				nodePrev.setNext(nodeTemp);
+				if (nodeCurrent==head)
+					head=nodeTemp;
+				else 
+					nodePrev.setNext(nodeTemp);
 			}
 		}
 		
@@ -58,13 +62,19 @@ public class SortedLinkedListMultiset<T> extends Multiset<T>
 	public int search(T item) {
 		//Start search of the head of the list
 		ListNode<T> nodeCurrent = head;
+		if(head == null)
+			return 0;
+		
 		/*Loop through the list, while the current node is lexigraphically before item.
 		 * When this loop terminates, nodeCurrent should be either item, or the first 
 		 * item after the searched for itemLexigraphically*/
-		while ( ((String)item).compareTo(((String)nodeCurrent.getItem()))>0 )
+		while ((nodeCurrent.getNext() != null) && ((String)item).compareTo(((String)nodeCurrent.getItem()))>0 )
 		{
+
 			nodeCurrent= nodeCurrent.getNext();
 		}
+		
+		
 		if (nodeCurrent.getItem().equals(item))
 			return nodeCurrent.getItemCount();
 		//If the end of the list is reached, return 0, as there are no items in the list
@@ -73,6 +83,9 @@ public class SortedLinkedListMultiset<T> extends Multiset<T>
 	
 	public void removeOne(T item) {
 		ListNode<T> nodeCurrent = head;
+		if (head ==null)
+			return;
+		
 		//Loop through the list until the item is found, or the end is reached
 		while (!(nodeCurrent.getItem().equals(item)) && (nodeCurrent.getNext()!=null))
 		{
@@ -94,7 +107,7 @@ public class SortedLinkedListMultiset<T> extends Multiset<T>
 		if(head == null || nodeCurrent.getItem() == null)
 			return;
 		//Loop through the list until the item is found, or the end is reached (in which case nodeCurrent will be set to null).
-		while (!(nodeCurrent.getItem().equals(item)) && (nodeCurrent!=null))
+		while ((nodeCurrent!=null) && !(nodeCurrent.getItem().equals(item)))
 		{
 			nodePrev=nodeCurrent;
 			nodeCurrent=nodeCurrent.getNext();
