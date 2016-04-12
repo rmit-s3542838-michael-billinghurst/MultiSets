@@ -79,7 +79,8 @@ public class LinkedListMultiset<T> extends Multiset<T>
 		//If the current node is the item, remove one. If it isn't, it means you've reached the end of the list.
 		if (nodeCurrent.getItem().equals(item))
 		{
-			nodeCurrent.deincrementItemCount();
+			if (nodeCurrent.getItemCount()>0)
+				nodeCurrent.deincrementItemCount();
 		}
 	} // end of removeOne()
 	

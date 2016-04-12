@@ -61,7 +61,8 @@ public class BstMultiset<T> extends Multiset<T>
 			TreeNode<T> next =current.checkNode(item);
 			if (current==next)
 			{
-				current.deincrementItemCount();
+				if (current.getItemCount()>0)
+					current.deincrementItemCount();
 				return;
 			}
 			else

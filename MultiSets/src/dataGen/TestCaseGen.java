@@ -64,7 +64,7 @@ public class TestCaseGen {
 				remONo = input.nextInt();
 				for (int i=0; i<remONo; i++)
 				{
-					int randomRem=random.nextInt(99);//Generate random number, 1-100;
+					int randomRem=random.nextInt(99);//Generate random number, 0-99;
 					inputWriter.println("RO "+randomRem);
 					if (dataset[randomRem]>0)
 						dataset[randomRem]--;
